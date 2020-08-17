@@ -18,4 +18,13 @@ data class Ball(var radio: Int, var color: String, var x: Int, var y: Int, var s
         y = min(max(y, radio), context.canvas.height - radio)
         if (y - radio <= 0 || y + radio >= context.canvas.height) speedY = -speedY + listOf(-1, 0, 0, 0, 0, 1).random()
     }
+
+    fun reverseSpeed() {
+        speedX = -speedX
+        speedY = -speedY
+    }
+
+    fun collision(ball: Ball): Boolean = this !== ball && ball.x + radio >= x-radio && ball.x - radio <=x+radio &&
+            ball.y + radio >= y - radio && ball.y - radio <= y + radio
+
 }

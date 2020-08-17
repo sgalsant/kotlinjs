@@ -28,12 +28,13 @@ fun load() {
     document.body?.say("holaaaa")
 }
 
-val balls = mutableListOf(Ball(25, "blue", 0,0, 1, 2),
-                          Ball( 15, "orange", 100, 100, 2, 2))
+val balls = mutableListOf(Ball(25, "blue", 0,0, 3, 2),
+                          Ball( 22, "orange", 100, 100, 2, 2))
 fun draw() {
     context.clearRect(0.0, 0.0, context.canvas.width.toDouble(), context.canvas.height.toDouble())
 
     for (ball in balls) {
+        if (balls.any {it.collision(ball)}) ball.reverseSpeed()
         ball.draw(context)
     }
 
